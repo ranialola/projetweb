@@ -1,0 +1,27 @@
+<section class="login-container">
+    <div class="login-card">
+      <h2>Connexion</h2>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="mail">Email:</label>
+          <input type="email" id="mail" formControlName="mail" required>
+          <div *ngIf="loginForm.get('mail')?.hasError('required') && (loginForm.get('mail')?.dirty || loginForm.get('mail')?.touched)" class="error-message">
+            L'email est requis.
+          </div>
+          <div *ngIf="loginForm.get('mail')?.hasError('email') && (loginForm.get('mail')?.dirty || loginForm.get('mail')?.touched)" class="error-message">
+            L'email n'est pas valide.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="mdp">Mot de passe:</label>
+          <input type="password" id="mdp" formControlName="mdp" required>
+          <div *ngIf="loginForm.get('mdp')?.hasError('required') && (loginForm.get('mdp')?.dirty || loginForm.get('mdp')?.touched)" class="error-message">
+            Le mot de passe est requis.
+          </div>
+        </div>
+        <button type="submit" [disabled]="!loginForm.valid">Se connecter</button>
+      </form>
+    </div>
+  </section>
+  <router-outlet></router-outlet>
+  
