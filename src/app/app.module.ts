@@ -8,7 +8,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminpageComponent } from './adminpage/adminpage.component';
 import { UpdateMemberComponent } from './update-member/update-member.component';
-import { NewMemberComponent } from './new-member/new-member.component'; 
+import { NewMemberComponent } from './new-member/new-member.component';
+import { MemberPageComponent } from './member-page/member-page.component';
+import { IllustrationsComponent } from './illustrations/illustrations.component'; 
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { NewMemberComponent } from './new-member/new-member.component';
     LoginComponent,
     AdminpageComponent,
     UpdateMemberComponent,
-    NewMemberComponent
+    NewMemberComponent,
+    MemberPageComponent,
+    IllustrationsComponent
   ],
   imports: [
     BrowserModule,

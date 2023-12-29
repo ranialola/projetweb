@@ -1,0 +1,42 @@
+
+<form>
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" [(ngModel)]="coordinates.name" required>
+  
+  <label for="description">Description:</label>
+  <textarea id="description" name="description" [(ngModel)]="coordinates.description" required></textarea>
+  
+  <label for="x">X Coordinate:</label>
+  <input type="number" id="x" name="x" [(ngModel)]="coordinates.x" required>
+  
+  <label for="y">Y Coordinate:</label>
+  <input type="number" id="y" name="y" [(ngModel)]="coordinates.y" required>
+  
+  <label for="image">Image:</label>
+  <input type="file" id="image" name="image" (change)="onFileChange($event)" accept="image/*">
+  
+  
+  <img *ngIf="imagePreview" [src]="imagePreview" alt="Selected Image" (click)="onImageClick($event)">
+  
+  
+  <div class="cursor" *ngIf="cursorPosition" [style.left.px]="cursorPosition.x" [style.top.px]="cursorPosition.y"></div>
+
+  
+  <div *ngIf="coordinates.components && coordinates.components.length > 0">
+    <h3>Components:</h3>
+    <ul>
+      <li *ngFor="let component of coordinates.components">
+        {{ component.componentName }} - X: {{ component.componentX }}, Y: {{ component.componentY }}
+      </li>
+    </ul>
+  </div>
+
+  
+  <div *ngIf="coordinates.name || coordinates.description">
+    <h3>Illustration Information:</h3>
+    <p>Name: {{ coordinates.name }}</p>
+    <p>Description: {{ coordinates.description }}</p>
+  </div>
+
+  <button type="button" (click)="addCoordinates()">Add Coordinates</button>
+</form>

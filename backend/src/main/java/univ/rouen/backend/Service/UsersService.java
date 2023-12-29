@@ -113,8 +113,13 @@ public class UsersService {
     public boolean isAdmin(String token) {
         String loggedInUserMail = extractUserMailFromToken(token);
         user loggedInUser = userlogin.findBymail(loggedInUserMail);
-        return loggedInUser != null && loggedInUser.isAdmin();
+    
+        // Vérifiez si l'utilisateur existe et a le rôle d'administrateur
+        return loggedInUser != null && loggedInUser.getRole() != null &&
+               (userRole.Role_admin.equals(loggedInUser.getRole().getName()) ||
+                userRole.Role_membre.equals(loggedInUser.getRole().getName()));
     }
+    
     
     private String extractUserMailFromToken(String token) {
         try {
@@ -124,13 +129,13 @@ public class UsersService {
                     .parseClaimsJws(token.replace("Bearer ", ""))
                     .getBody();
             
-            // Ajoutez ces lignes pour vérifier le contenu du token et des revendications
+          
             System.out.println("Token content: " + token);
             System.out.println("Claims: " + claims);
             
             return claims.getSubject();
         } catch (Exception e) {
-            // Gérer les erreurs lors de l'extraction du token
+         
             return null;
         }
     }
@@ -257,7 +262,11 @@ public class UsersService {
         return optionalUser.map(this::convertToDTO);
     }
     
-   
+    
+    
+    
+    
+    
 }
 
 

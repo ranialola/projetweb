@@ -66,6 +66,8 @@ export class LoginService {
     return this.http.post<any>(`${this.baseUrl}/api/admin/addUser`, newMemberData, { headers, responseType: 'text' as 'json' });
   }
   
-  
+  loginForMember(credentials: { mail: string, mdp: string }): Observable<any> {
+    return this.http.post(`${this.baseUrl}/api/LogIn`, credentials);
+  }
   
 }
